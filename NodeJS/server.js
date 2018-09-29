@@ -19,6 +19,5 @@ io.on('connection', function (socket) {
       console.log('Disconnect');
     redisClient.quit();
   });
-
 });
 
