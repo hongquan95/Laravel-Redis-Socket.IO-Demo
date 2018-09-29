@@ -14,3 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('socket', 'SocketController@index')->name('socket');
+Route::post('sendmessage', 'SocketController@sendMessage')->name('send');
+Route::get('writemessage', 'SocketController@writeMessage')->name('write');
+
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
