@@ -6,8 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use App\Mail;
 use App\Sms;
 use App\Notify;
-use App\MailAdapter;
-use App\SmsAdapter;
+use App\SmsOnly;
+use App\MailOnly;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,15 +31,16 @@ class AppServiceProvider extends ServiceProvider
         // $this->app->bind('Notify', function(){
         //     return new Mail();
         // });
+        // $this->app->singleton('App\Notify', 'App\Mail');
         $this->app->singleton('App\Notify', function() {
-            return new SmsAdapter(); //send mail and sms
+            return new SmsOnly(new Mail(), resolve('SmsAdapter')); //send mail and sms
         });
 
-        $this->app->singleton('MailAdd', function(){
+        $this->app->singleton('MailAdapter', function(){
             return new Mail();
         });
 
-        $this->app->singleton('SmsAdd', function(){
+        $this->app->singleton('SmsAdapter', function(){
             return new Sms();
         });
 
