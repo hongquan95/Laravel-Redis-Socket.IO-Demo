@@ -19,7 +19,8 @@ Route::post('sendmessage', 'SocketController@sendMessage')->name('send');
 Route::get('writemessage', 'SocketController@writeMessage')->name('write');
 
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/test/{str}', 'HomeController@test');
